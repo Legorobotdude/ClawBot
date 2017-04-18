@@ -19,9 +19,10 @@
 |*                                                                                                    *|
 |*    MOTORS & SENSORS:                                                                               *|
 |*    [I/O Port]              [Name]              [Type]              [Description]                   *|
-|*    Motor - Port 2          rightMotor           VEX Motor           Right motor                    *|
-|*    Motor - Port 3          leftMotor            VEX Motor           Left motor                     *|
-|*    Motor - Port 6          armMotor             VEX Motor           Arm motor                      *|
+|*    Motor - Port 1          rightMotor           VEX Motor           Right motor                    *|
+|*    Motor - Port 10          leftMotor            VEX Motor           Left motor                     *|
+|*    Motor - Port 6          armMotor             VEX Motor           Arm motor    
+|*    Motor - Port 7          liftMotor             VEX Motor          Lift Motor                     *|
 \*----------------------------------------------------------------------------------------------------*/
 
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
@@ -35,8 +36,9 @@ int threshold2 = 50;
   while(1 == 1)
   {
     //Driving Motor Control
-    /*motor[leftMotor] = vexRT[Ch3] / 2;
+    /*motor[leftMotor] = vexRT[Ch3] / 2;//old direct drive
     motor[rightMotor] = vexRT[Ch2] / 2;*/
+
      if(abs(vexRT[Ch3]) < threshold)         // If the left joystick is greater than or less than the threshold:
     {
       motor[leftMotor]  = (vexRT[Ch3]);   // Left Joystick Y value / 2.
@@ -84,6 +86,7 @@ int threshold2 = 50;
     {
     	motor[armMotor] = 0;
     }
+    //lift control
    if(vexRT[Btn5U] == 1)
     {
       motor[liftMotor] = 40;
