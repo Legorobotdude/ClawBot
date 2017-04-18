@@ -30,9 +30,9 @@
 task main()
 {
 
-int threshold = 10;
-int threshold2 = 50;
-bool slowMode = 0;
+int threshold = 5;
+int threshold2 = 100;
+
 float speedMod = 1;
 
   while(1 == 1)
@@ -49,33 +49,47 @@ float speedMod = 1;
     {
     	speedMod = 1;
     }
-    	
+    if(vexRT[Btn6D])
+    {
+    	if (abs(vexRT[Ch3])>=abs(vexRT[Ch2]))
+    	{
+    		motor[leftMotor] = speedMod * vexRT[Ch3];
+    		motor[rightMotor] = speedMod * vexRT[Ch3];
+    	}
+    	else
+    	{
+    		motor[leftMotor] = speedMod * vexRT[Ch2];
+    		motor[rightMotor] = speedMod * vexRT[Ch2];
+    	}
+  }
+  else
+  {
 
      if(abs(vexRT[Ch3]) < threshold)         // If the left joystick is greater than or less than the threshold:
     {
-      motor[leftMotor]  = speedMod*(vexRT[Ch3]);   // Left Joystick Y value / 2.
+      motor[leftMotor]  = 3*speedMod*(vexRT[Ch3]);   // Left Joystick Y value / 2.
     }
     else if (abs(vexRT[Ch3])< threshold2)
     {
-        motor[leftMotor] = speedMod*(vexRT[Ch3])/2;
+        motor[leftMotor] = speedMod*((vexRT[Ch3])/3+40/3*(vexRT[Ch3])/abs(vexRT[Ch3]));
     }
     else
     {
-        motor[leftMotor]  = speedMod*(vexRT[Ch3]);
+        motor[leftMotor]  = speedMod*((vexRT[Ch3])*80.166/27 - (249+2/3)*(vexRT[Ch3])/abs(vexRT[Ch3]));
     }
   
 
     if(abs(vexRT[Ch2]) < threshold)         // If the right joystick is greater than or less than the threshold:
     {
-      motor[rightMotor] = speedMod*(vexRT[Ch2]);   // Right Joystick Y value / 2.
+      motor[rightMotor] = 3*speedMod*(vexRT[Ch2]);   // Right Joystick Y value / 2.
     }
      else if (abs(vexRT[Ch2])< threshold2)
     {
-        motor[rightMotor] = speedMod*(vexRT[Ch2])/2;
+        motor[rightMotor] = speedMod*((vexRT[Ch2])/3+40/3*(vexRT[Ch2])/abs(vexRT[Ch2]));
     }
     else
     {
-        motor[rightMotor] = speedMod*(vexRT[Ch2]);
+        motor[rightMotor] = speedMod*((vexRT[Ch2])*80.166/27 - (249+2/3)*(vexRT[Ch2])/abs(vexRT[Ch2]));
     }
     
 
@@ -105,7 +119,7 @@ float speedMod = 1;
     {
     	motor[liftMotor] = 5;
     }
-    
+  }
   }
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
