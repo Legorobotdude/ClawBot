@@ -21,7 +21,7 @@
 |*    [I/O Port]              [Name]              [Type]              [Description]                   *|
 |*    Motor - Port 1          rightMotor           VEX Motor           Right motor                    *|
 |*    Motor - Port 10          leftMotor            VEX Motor           Left motor                     *|
-|*    Motor - Port 6          armMotor             VEX Motor           Arm motor    
+|*    Motor - Port 6          armMotor             VEX Motor           Arm motor
 |*    Motor - Port 7          liftMotor             VEX Motor          Lift Motor                     *|
 \*----------------------------------------------------------------------------------------------------*/
 
@@ -40,7 +40,7 @@ float speedMod = 1;
     //Driving Motor Control
     /*motor[leftMotor] = vexRT[Ch3] / 2;//old direct drive
     motor[rightMotor] = vexRT[Ch2] / 2;*/
-    
+
     if(vexRT[Btn6U])
     {
     	speedMod = 0.5;
@@ -77,7 +77,7 @@ float speedMod = 1;
     {
         motor[leftMotor]  = speedMod*((vexRT[Ch3])*80.166/27 - (249+2/3)*(vexRT[Ch3])/abs(vexRT[Ch3]));
     }
-  
+
 
     if(abs(vexRT[Ch2]) < threshold)         // If the right joystick is greater than or less than the threshold:
     {
@@ -91,14 +91,14 @@ float speedMod = 1;
     {
         motor[rightMotor] = speedMod*((vexRT[Ch2])*80.166/27 - (249+2/3)*(vexRT[Ch2])/abs(vexRT[Ch2]));
     }
-    
+
 
     //Arm Control
-    if(vexRT[Btn7U] == 1)
+    if(vexRT[Btn5U] == 1)
     {
       motor[armMotor] = 40;
     }
-    else if(vexRT[Btn7D] == 1)
+    else if(vexRT[Btn5D] == 1)
     {
       motor[armMotor] = -40;
     }
