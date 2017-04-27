@@ -52,7 +52,7 @@ task pidController()
     pidIntegral   = 0;
 
     while( true )
-        {
+    	{
         // Is PID control active ?
         if( pidRunning )
             {
