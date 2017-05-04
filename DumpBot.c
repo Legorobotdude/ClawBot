@@ -91,7 +91,7 @@ float speedMod = 1;
     {
         motor[rightMotor] = speedMod*((vexRT[Ch2])*80.166/27 - (249+2/3)*(vexRT[Ch2])/abs(vexRT[Ch2]));
     }
-
+}
 
     //Arm Control
     if(vexRT[Btn5U] == 1)
@@ -122,7 +122,7 @@ float speedMod = 1;
     {
     	motor[liftMotor] = 5;
     }*/
-  }
+
   }
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
