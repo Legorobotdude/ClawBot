@@ -1,5 +1,6 @@
 #pragma config(Sensor, dgtl1,  Quad1,          sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  Quad2,          sensorQuadEncoder)
+#pragma config(Sensor, dgtl5,  ,               sensorSONAR_inch)
 #pragma config(Sensor, dgtl10, LED1,           sensorLEDtoVCC)
 #pragma config(Sensor, dgtl11, LED2,           sensorLEDtoVCC)
 #pragma config(Sensor, dgtl12, LED3,           sensorLEDtoVCC)
@@ -63,6 +64,25 @@ motor[rightMotor] = -60;
 wait1Msec(150);
 motor[leftMotor] = 0;
 motor[rightMotor] = 0;
+
+
+}
+
+task driveTillBump(int leftSpeed, int rightSpeed)
+{
+
+	motor[leftMotor] = leftSpeed;
+	motor[rightMotor] = rightSpeed;
+
+
+}
+
+task driveTillUltrasonicThenSquare(int leftSpeed, int rightSpeed)
+{
+	motor[leftMotor] = leftSpeed;
+	motor[rightMotor] = rightSpeed;
+
+	while[SensorValue(UltraSonic
 
 
 }
