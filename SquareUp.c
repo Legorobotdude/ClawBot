@@ -29,8 +29,8 @@ void driveTillUltrasonicThenSquare(int leftSpeed, int rightSpeed, bool dir)
 
 	while(SensorValue[Ultrasonic]>=10)
 	{
+  }
 
-}
 	motor[leftMotor] = 0;
 	motor[rightMotor] = 0;
 	wait1Msec(250);
@@ -70,6 +70,49 @@ else
 	motor[rightMotor] = 0;
 
 }
+void driveTillUltrasonicThenTurn(int leftSpeed, int rightSpeed, bool dir)
+{
+	motor[leftMotor] = leftSpeed;
+	motor[rightMotor] = rightSpeed;
+
+	while(SensorValue[Ultrasonic]>=31)
+	{
+  }
+
+	motor[leftMotor] = 0;
+	motor[rightMotor] = 0;
+	wait1Msec(250);
+	if (dir)
+	{
+	  motor[leftMotor] = -leftSpeed/2;
+	  motor[rightMotor] = rightSpeed/2;
+  }
+  else
+  {
+	  motor[leftMotor] = leftSpeed/2;
+	  motor[rightMotor] = -rightSpeed/2;
+  }
+	wait1Msec(1250);
+	motor[leftMotor] = -leftSpeed;
+	motor[rightMotor] = -rightSpeed;
+	while((!SensorValue[bump])||(!SensorValue[bump2]))
+	{
+		if(SensorValue[bump2])
+		{
+			motor[leftMotor] = 0;
+		}
+		if(SensorValue[bump])
+		{
+			motor[rightMotor] = 0;
+		}
+
+	}
+
+	motor[leftMotor] = 0;
+	motor[rightMotor] = 0;
+
+}
+
 task main()
 {
 	 while (!vexRT[Btn8D])
@@ -78,8 +121,15 @@ task main()
 	driveTillUltrasonicThenSquare(100,100,1);
 	driveTillUltrasonicThenSquare(100,100,0);
 	driveTillUltrasonicThenSquare(100,100,0);
-		driveTillUltrasonicThenSquare(100,100,1);
-		driveTillUltrasonicThenSquare(100,100,1);
+	driveTillUltrasonicThenSquare(100,100,1);
+	driveTillUltrasonicThenTurn(100,100,1);
+	driveTillUltrasonicThenSquare(100,100,0);
+
+	motor[leftMotor] = 80;
+	motor[rightMotor] = 80;
+	wait1Msec(1250);
+	motor[leftMotor] = 0;
+	motor[rightMotor] = 0;
 
 /*
   for (int x=0; x<16; x++)
